@@ -1,14 +1,18 @@
+/**
 /// <reference types="firebase" />
 declare var firebase: firebase.app.App;
+*/
 
 import { Component, h, State } from '@stencil/core';
 
 import { collectionData } from 'rxfire/firestore';
 
 /**
+*/
 //Method 2: via npm module
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+/**
 */
 
 console.log('AppHome File - Load');
@@ -19,13 +23,20 @@ console.log('AppHome File - Load');
 })
 export class AppHome {
 
-  ref = firebase.firestore().collection('Category');
 
   @State() cats = [];
 
   componentWillLoad() {
 
     /**
+    //Method 1: via Script
+    const ref = firebase.firestore().collection('Category');
+    collectionData(ref, 'id').subscribe(cat => {
+        console.log(cat);
+        this.cats = cat;
+    });
+    */
+
     //Method 2: via npm module
     const app = firebase.initializeApp({
         apiKey: "AIzaSyBxT5MFxXvfAGDVcWLhYQ3vSBW7dOnKjBs",
@@ -41,12 +52,7 @@ export class AppHome {
         console.log(cat);
         this.cats = cat;
     });
-    */
 
-    collectionData(this.ref, 'id').subscribe(cat => {
-        console.log(cat);
-        this.cats = cat;
-    });
   }
 
   render() {
