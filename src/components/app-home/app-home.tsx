@@ -1,5 +1,5 @@
-/// <reference types="firebase" />
-declare var firebase: firebase.app.App;
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 import { Component, h, State } from '@stencil/core';
 
@@ -11,12 +11,20 @@ import { collectionData } from 'rxfire/firestore';
 })
 export class AppHome {
 
-  ref = firebase.firestore().collection('Category');
-
   @State() cats = [];
 
   componentWillLoad() {
-    collectionData(this.ref, 'id').subscribe(cat => {
+    const app = firebase.initializeApp({
+          apiKey: "AIzaSyBxT5MFxXvfAGDVcWLhYQ3vSBW7dOnKjBs",
+          authDomain: "bazon-india.firebaseapp.com",
+          databaseURL: "https://bazon-india.firebaseio.com",
+          projectId: "bazon-india",
+          storageBucket: "bazon-india.appspot.com",
+          messagingSenderId: "928019631782",
+          appId: "1:928019631782:web:ea7c413839ee346dac6e67"
+    });
+    const ref = app.firestore().collection('Category');
+    collectionData(ref, 'id').subscribe(cat => {
         console.log(cat);
         this.cats = cat;
     });
