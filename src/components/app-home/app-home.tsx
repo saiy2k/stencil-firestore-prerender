@@ -1,10 +1,26 @@
-import { Component, h } from '@stencil/core';
+/// <reference types="firebase" />
+declare var firebase: firebase.app.App;
+
+import { Component, h, State } from '@stencil/core';
+
+import { collectionData } from 'rxfire/firestore';
 
 @Component({
   tag: 'app-home',
   styleUrl: 'app-home.css'
 })
 export class AppHome {
+
+  ref = firebase.firestore().collection('Category');
+
+  @State() cats = [];
+
+  componentWillLoad() {
+    collectionData(this.ref, 'id').subscribe(cat => {
+        console.log(cat);
+        this.cats = cat;
+    });
+  }
 
   render() {
     return [
@@ -23,6 +39,17 @@ export class AppHome {
         </p>
 
         <ion-button href="/profile/ionic" expand="block">Profile page</ion-button>
+        <ion-button href="/profile/angular" expand="block">Angular page</ion-button>
+        <ion-button href="/profile/react" expand="block">React page</ion-button>
+
+        {
+            this.cats.map((cat: any) => {
+                return (
+                    <ion-button href="/profile/{cat.name}" expand="block">{cat.name}</ion-button>
+                );
+            })
+        }
+
       </ion-content>
     ];
   }
