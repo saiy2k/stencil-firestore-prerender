@@ -45,7 +45,7 @@ export class AppHome {
         {
             this.cats.map((cat: any) => {
                 return (
-                    <ion-button href="/profile/{cat.name}" expand="block">{cat.name}</ion-button>
+                    <ion-button href={'/profile/' + cat.name} expand="block">{cat.name}</ion-button>
                 );
             })
         }
