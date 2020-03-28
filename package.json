@@ -1,0 +1,25 @@
+{
+  "name": "ssrapp",
+  "private": true,
+  "version": "0.0.1",
+  "description": "ssrapp",
+  "license": "MIT",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watch",
+    "generate": "stencil generate"
+  },
+  "devDependencies": {
+    "@ionic/core": "^5.0.6",
+    "@stencil/core": "^1.11.2"
+  },
+  "dependencies": {
+    "rxfire": "^3.11.1",
+    "rxjs": "^6.5.4"
+  }
+}
