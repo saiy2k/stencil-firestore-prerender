@@ -18,10 +18,9 @@
 
   <meta http-equiv="x-ua-compatible" content="IE=Edge">
 
-  <script type="module" src="/build/app.esm.js"></script>
-  <script nomodule src="/build/app.js"></script>
-
   <!--
+      Method 1: via Script tag
+  -->
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
@@ -38,8 +37,14 @@
       const firestore = firebase.firestore();
       const settings = { timestampsInSnapshots: true };
       firestore.settings(settings);
+      console.log('firebase initialized');
   </script>
+  <!--
+      Method 1: via Script tag
   -->
+
+  <script type="module" src="/build/app.esm.js"></script>
+  <script nomodule src="/build/app.js"></script>
 
   <link href="/build/app.css" rel="stylesheet">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/icon/apple-touch-icon.png">
@@ -48,9 +53,7 @@
 </head>
 
 <body>
-
   <app-root></app-root>
-
 </body>
 
 </html>
